@@ -6,31 +6,36 @@
 	},
 	"item": [
 		{
-			"name": "https://jsonplaceholder.typicode.com/posts?UserId",
+			"name": "https://jsonplaceholder.typicode.com/posts/1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "d72be97d-a701-40c2-ae24-13244da89e8d",
+						"id": "a4993c9c-9333-401f-956e-2b28f91b2ead",
 						"exec": [
-							"",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							"tests[\"status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Body doit matches string\"] = responseBody.has(\"qui est esse\");"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/posts?UserId",
+					"raw": "https://jsonplaceholder.typicode.com/posts?userid=1",
 					"protocol": "https",
 					"host": [
 						"jsonplaceholder",
@@ -42,8 +47,8 @@
 					],
 					"query": [
 						{
-							"key": "UserId",
-							"value": null
+							"key": "userid",
+							"value": "1"
 						}
 					]
 				}
@@ -51,19 +56,15 @@
 			"response": []
 		},
 		{
-			"name": "https://jsonplaceholder.typicode.com/posts/1",
+			"name": "https://jsonplaceholder.typicode.com/posts?userid=1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "a4993c9c-9333-401f-956e-2b28f91b2ead",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"pm.test(\"Response time is less than 1000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
-							"});"
+							"tests[\"status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response time is less then 1000ms\"] = responseTime < 1000;"
 						],
 						"type": "text/javascript"
 					}
@@ -71,11 +72,15 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {},
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/posts/1",
 					"protocol": "https",
