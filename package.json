@@ -1,0 +1,15 @@
+{
+  "name": "postman-newman-jekins",
+  "version": "1.0.0",
+  "description": "Project for storing Postman tests",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "api-tests-production": "newman run tests/jsonplaceholder.com.postman_collection.json"
+  },
+  "author": "Romaric POTON",
+  "dependencies": {
+    "newman": "^4.4.1"
+  }
+}
