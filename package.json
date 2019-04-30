@@ -6,10 +6,9 @@
     "test": "tests"
   },
   "scripts": {
-    "api-tests-production": "newman run tests/jsonplaceholder.com.postman_collection.json"
+    "api-tests-production": "newman run tests/Postman Test Collection.postman_collection.json"
   },
   "author": "Romaric POTON",
-  "dependencies": {
     "newman": "^4.4.1"
   }
 }

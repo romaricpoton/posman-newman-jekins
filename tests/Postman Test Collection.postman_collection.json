@@ -1,20 +1,32 @@
 {
 	"info": {
-		"_postman_id": "c8b1ac54-286b-40d0-95f1-b4aa0ebbfb65",
-		"name": "jsonplaceholder.com",
+		"_postman_id": "4a29ac5f-bfa0-45d9-993a-e4a99cd9aaa0",
+		"name": "Postman Test Collection",
+		"description": "Ceci est une collection de test Postman",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "https://jsonplaceholder.typicode.com/posts/1",
+			"name": " {{url}}/users",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "a4993c9c-9333-401f-956e-2b28f91b2ead",
 						"exec": [
-							"tests[\"status code is 200\"] = responseCode.code === 200;",
-							"tests[\"Body doit matches string\"] = responseBody.has(\"qui est esse\");"
+							"pm.test(\"Status code is 20\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Your test enail\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].email).to.eql(\"Sincere@april.biz\");",
+							"});",
+							"",
+							"",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -35,43 +47,46 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/posts?userid=1",
-					"protocol": "https",
+					"raw": "{{url}}/users",
 					"host": [
-						"jsonplaceholder",
-						"typicode",
-						"com"
+						"{{url}}"
 					],
 					"path": [
-						"posts"
-					],
-					"query": [
-						{
-							"key": "userid",
-							"value": "1"
-						}
+						"users"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "https://jsonplaceholder.typicode.com/posts?userid=1",
+			"name": " {{url}}/users",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "a4993c9c-9333-401f-956e-2b28f91b2ead",
 						"exec": [
-							"tests[\"status code is 200\"] = responseCode.code === 200;",
-							"tests[\"Response time is less then 1000ms\"] = responseTime < 1000;"
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(11);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							""
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -82,16 +97,12 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/posts/1",
-					"protocol": "https",
+					"raw": "{{url}}/users",
 					"host": [
-						"jsonplaceholder",
-						"typicode",
-						"com"
+						"{{url}}"
 					],
 					"path": [
-						"posts",
-						"1"
+						"users"
 					]
 				}
 			},
