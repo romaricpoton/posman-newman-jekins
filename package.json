@@ -1,0 +1,18 @@
+{
+  "name": "project-newman-api",
+  "version": "1.0.0",
+  "description": "Pipeline de tests API automatisé avec Newman",
+  "main": "index.js",
+  "scripts": {
+    "test-users": "newman run collections/users_collection.json -e environment.json",
+    "test-posts": "newman run collections/posts_collection.json -e environment.json",
+    "test-put": "newman run collections/put_collection.json -e environment.json",
+    "test-patch": "newman run collections/patch_collection.json -e environment.json",
+    "test-delete": "newman run collections/delete_collection.json -e environment.json",
+    "test-all": "npm run test-users && npm run test-posts && npm run test-put && npm run test-patch && npm run test-delete"
+  },
+  "author": "Romaric POTON",
+  "dependencies": {
+    "newman": "^6.1.3"
+  }
+}
