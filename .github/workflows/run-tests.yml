@@ -1,0 +1,46 @@
+name: API Automated Tests (Newman)
+
+# Déclencheurs : Quand est-ce que le test se lance ?
+on:
+  # Permet toujours de lancer le test manuellement depuis GitHub si besoin
+  workflow_dispatch: 
+
+  # Lancement automatique par planification (CRON)
+  # Configuration basée sur l'heure d'été française (UTC+2)
+  # Format : "Minutes Heures JoursMois Mois JoursSemaine"
+  schedule:
+    # 06:00 UTC = 08:00 en France (Du lundi au vendredi : 1-5)
+    - cron: '0 6 * * 1-5'
+    
+    # 08:00 UTC = 10:00 en France
+    - cron: '0 8 * * 1-5'
+    
+    # 10:00 UTC = 12:00 en France
+    - cron: '0 10 * * 1-5'
+    
+    # 12:00 UTC = 14:00 en France
+    - cron: '0 12 * * 1-5'
+    
+    # 14:00 UTC = 16:00 en France
+    - cron: '0 14 * * 1-5'
+    
+    # 18:00 UTC = 20:00 en France
+    - cron: '0 18 * * 1-5'
+
+jobs:
+  api-testing:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v4
+
+    - name: Installation de Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Installation des dépendances (Newman)
+      run: npm install
+
+    - name: Exécution des tests Newman
+      run: npm run test-all
