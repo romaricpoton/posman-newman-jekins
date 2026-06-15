@@ -11,12 +11,12 @@ const files = [
     'collections/delete_collection.json'
 ];
 
-console.log("🚀 Fusion des collections en mémoire...");
+console.log("Fusion des collections en mémoire...");
 
 // 2. Structure d'une collection Postman "Maîtresse" virtuelle
 let masterCollection = {
     info: {
-        name: "Suite de Tests API Globale (Full CRUD)",
+        name: "Suite de Tests API Globale ",
         schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     item: [] // On va injecter tes collections ici sous forme de dossiers
@@ -34,7 +34,7 @@ files.forEach(file => {
             item: content.item
         });
     } else {
-        console.error(`⚠️ Fichier introuvable : ${file}`);
+        console.error(`Fichier introuvable : ${file}`);
     }
 });
 
@@ -43,7 +43,7 @@ if (!fs.existsSync('reports')) {
     fs.mkdirSync('reports');
 }
 
-console.log("🏃 Lancement du Run Newman Global...");
+console.log("Lancement du Run Newman Global...");
 
 // 5. Un SEUL run Newman pour TOUT le projet
 // 5. Un SEUL run Newman pour TOUT le projet avec détails complets
@@ -69,9 +69,9 @@ newman.run({
     }
 }, function (err, summary) {
     if (err) { 
-        console.error("❌ Erreur critique lors du run :", err); 
+        console.error("Erreur critique lors du run :", err); 
         process.exit(1);
     }
-    console.log("🏁 Tous les tests sont terminés !");
-    console.log("📊 Ouvrez 'reports/global-report.html' : tout le détail est visible !");
+    console.log("Tous les tests sont terminés !");
+    console.log(" Ouvrez 'reports/global-report.html' : tout le détail est visible !");
 });
