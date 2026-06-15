@@ -1,0 +1,49 @@
+{
+	"info": {
+		"name": "API PUT Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Update Post - PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Statut HTTP est 200 OK pour le PUT\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"L'objet complet a été mis à jour via PUT\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.eql(\"Titre modifié via PUT\");",
+							"    pm.expect(jsonData.body).to.eql(\"Corps modifié via PUT\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"title\": \"Titre modifié via PUT\",\n    \"body\": \"Corps modifié via PUT\",\n    \"userId\": 1\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/posts/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["posts", "1"]
+				}
+			},
+			"response": []
+		}
+	]
+}

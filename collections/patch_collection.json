@@ -1,0 +1,48 @@
+{
+	"info": {
+		"name": "API PATCH Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Update Post - PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Statut HTTP est 200 OK pour le PATCH\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Seul le titre a été modifié via PATCH\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.eql(\"Seulement le titre est changé via PATCH\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Seulement le titre est changed via PATCH\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/posts/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["posts", "1"]
+				}
+			},
+			"response": []
+		}
+	]
+}
