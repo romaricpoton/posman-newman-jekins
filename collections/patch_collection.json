@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Seulement le titre est changed via PATCH\"\n}"
+					"raw": "{\n    \"title\": \"Seulement le titre est changé via PATCH\"\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/posts/1",
