@@ -1,7 +1,7 @@
 name: API Automated Tests (Newman)
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch: # Permet le déclenchement manuel (via PowerShell ou l'interface)
   schedule:
     - cron: '0 6 * * 1-5'
     - cron: '0 8 * * 1-5'
@@ -26,18 +26,17 @@ jobs:
       with:
         node-version: '24'
 
-    - name: Installation des dépendances (Newman + Reporter HTML)
+    - name: Installation des dépendances
       run: npm install
 
-    # ÉTAPE MODIFIÉE : On lance notre orchestrateur JS qui centralise tout
     - name: Exécution de la suite de tests globale
       run: npm run test-all
 
-    # ÉTAPE OPTIMISÉE : Sauvegarde du rapport global unique, même en cas d'échec
+    # SAUVEGARDE DU RAPPORT DANS LES ARTIFACTS
     - name: Sauvegarde du rapport HTML Global
-      if: always() 
+      if: always() # S'exécute MEME si un test échoue, indispensable pour le debug !
       uses: actions/upload-artifact@v4
       with:
         name: newman-global-html-report
         path: reports/global-report.html
-        retention-days: 5
+        retention-days: 5 # Le rapport reste téléchargeable pendant 5 jours
